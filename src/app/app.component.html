@@ -1,20 +1,203 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<header class="navbar navbar-light bg-light">
+  <a class="navbar-brand" 
+      href="#"
+      style="font-size: 2.4em">
+    <img src="../assets/tank.svg" 
+          width="50" 
+          height="50" 
+          class="d-inline-block align-top" 
+          alt="">
+    Tank Utilities
+  </a>
+</header>
+<main class="container-fluid">
+  <div class="row">
+      <section class="col-6"
+              style="height: 650px;
+                    border: solid black 0.6px">
+        <header style="height: 4%;
+                        font-size: 1.2em">
+          Tanque de Agua
+        </header>
+        <section style="height: 75%; padding-top: 5%;">
+          <div style="width: 80%;
+                      height: 10%;
+                      margin-left: 10%;
+                      border: solid black 1px;
+                      display: block;
+                      border-radius: 46px 46px 0px 0px;
+                      background-color: rgba(0, 0, 0, 0.13)">
+          </div>
+          <div style="width: 80%;
+                      height: 70%;
+                      margin-left: 10%;
+                      border-left: solid black 1px;
+                      border-right: solid black 1px;
+                      display: flex;
+                      flex-direction: row;
+                      justify-content: center;
+                      align-items: flex-end">
+            <div id="level_water"
+                  [style.height]="ltsWater"
+                  style="width: 100%;
+              background-color: blue;
+              height: 55%;">
+            </div>
+          </div>
+          <div style="width: 80%;
+                      height: 10%;
+                      margin-left: 10%;
+                      border: solid black 1px;
+                      display: block;
+                      border-radius: 0px 0px 46px 46px;
+                      background-color: rgba(0, 0, 0, 0.13)">
+          </div>
+        </section>
+        <footer class="row"
+              style="height: 21%;">
+          <div class="col">
+              <label class="row"
+                      style="font-size: 1em;
+                            margin-left: 25%">
+                Nivel (Lts)
+              </label>
+              <label id="lbl_lts"
+                      class="row"
+                      style="font-size: 1.4em;
+                            margin-left: 25%">
+                {{lts}}
+              </label>
+              <div class="row">
+                <div class="col-3">
 
+                </div>
+                <input id="btn_increment" 
+                      class="col-3"
+                      type="button"
+                      value="+"
+                      style="width: 76px;
+                            text-align: center"
+                      (click)="increment()">
+                <input id="btn_decrement"
+                      class="col-3"
+                      type="button"
+                      value="-"
+                      style="width: 76px;
+                            text-align: center"
+                      (click)="decrement()">
+              </div>
+          </div>
+          <div class="col">
+              <label class="row"
+                      style="font-size: 1em;
+                              margin-left: 25%">
+                Llenar (Lts)
+              </label>
+              <input id="fld_point"
+                      class="row"
+                      type="number" 
+                      name="fldPoint"
+                      min="1" 
+                      max="100"
+                      style="margin-left: 25%"
+                      [(ngModel)]="fldPoint">
+              <input id="btn_point"
+                      class="row"
+                      type="button"
+                      value="Aceptar"
+                      style="margin-left: 25%;
+                            width: 76px;
+                            text-align: center"
+                      (click)="setLts()">
+          </div>
+          <div class="col">
+              <label class="row"
+                      style="font-size: 1em;
+                              margin-left: 25%">
+                Drenar
+              </label>
+              <input id="btn_drain"
+                      class="row"
+                      type="button"
+                      value="Aceptar"
+                      style="margin-left: 5%;
+                            width: 120px;
+                            text-align: center"
+                      (click)="drain()">
+          </div>
+        </footer>
+      </section>
+      <section class="col-6"
+              style="height: 650px;
+                    border: solid black 0.6px">
+        <header style="height: 4%;
+        font-size: 1.2em">
+          Configuración
+        </header>
+        <div style="height: 4%; margin-top: 9%; margin-bottom: 9%;
+        font-size: 1.2em">
+          Capacidad
+        </div>
+        <section class="row" 
+                  style="height: 5%;">
+          <div class="col-3">
+            Máximo
+          </div>
+          <input id="fld_max_level"
+                  class="col-3"
+                  type="number" 
+                  name="tentacles"
+                  min="1"
+                  style="margin-left: 25%">
+        </section>
+        <section class="row" 
+                  style="height: 5%;">
+          <div class="col-3">
+            Mínimo
+          </div>
+          <input id="fld_min_level"
+                  class="col-3"
+                  type="number" 
+                  name="tentacles"
+                  min="1"
+                  style="margin-left: 25%">
+        </section>
+        <div style="height: 4%; margin-top: 9%; margin-bottom: 9%;
+        font-size: 1.2em">
+          Alarmas
+        </div>
+        <section class="row" 
+                  style="height: 5%;">
+          <div class="col-3">
+            Nivel Alto
+          </div>
+          <input id="fld_high_level"
+                  class="col-3"
+                  type="number" 
+                  name="tentacles"
+                  min="1"
+                  style="margin-left: 25%">
+        </section>
+        <section class="row" 
+                  style="height: 5%;">
+          <div class="col-3">
+            Nivel Bajo
+          </div>
+          <input id="fld_low_level"
+                  class="col-3"
+                  type="number" 
+                  name="tentacles"
+                  min="1"
+                  style="margin-left: 25%">
+        </section>
+        <input id="btn_config"
+                class="row"
+                type="button"
+                value="Aceptar"
+                style="margin-left: 5%;
+                      width: 120px;
+                      text-align: center">
+      </section>
+  </div>
+  
+</main>
